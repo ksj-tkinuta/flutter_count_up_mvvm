@@ -7,12 +7,12 @@ class HomePageNotifier extends StateNotifier<HomePageState> {
 
   // メインカウントを+100する
   void increaseMainCount() async {
-    state = state.copyWith(mainCount: state.mainCount + 100);
+    state = state.copyWith(mainCount: state.mainCount + 10);
   }
 
   // メインカウントを-100する
   void decreaseMainCount() async {
-    state = state.copyWith(mainCount: state.mainCount - 100);
+    state = state.copyWith(mainCount: state.mainCount - 10);
   }
 
   // サブカウントを+1する

@@ -10,6 +10,15 @@ class HomePage extends ConsumerWidget {
     final _homePageState = ref.watch(homePageProvider);
     final _homePageNotifier = ref.watch(homePageProvider.notifier);
 
+    // Function to check whether the button should be enabled
+    bool isIncrementButtonEnabled(int threshold) {
+      return _homePageState.mainCount < threshold;
+    }
+
+    bool isDecrementButtonEnabled(int threshold) {
+      return _homePageState.mainCount > threshold;
+    }
+
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter COUNT UP MVVM')),
       floatingActionButton: FloatingActionButton(
@@ -44,7 +53,9 @@ class HomePage extends ConsumerWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: _homePageNotifier.increaseMainCount,
+                onPressed:  isIncrementButtonEnabled(130)
+                    ? () => _homePageNotifier.increaseMainCount()
+                    : null,
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue.withOpacity(0.5), // ボタンの背景色
                 ),
@@ -53,14 +64,16 @@ class HomePage extends ConsumerWidget {
                   height: 80,
                   child: Center(
                     child: Text(
-                      'Main +100',
+                      'Main +10',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
               ),
               ElevatedButton(
-                onPressed: _homePageNotifier.decreaseMainCount,
+                onPressed:   isDecrementButtonEnabled(-30)
+                    ? () => _homePageNotifier.decreaseMainCount()
+                    : null,
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue.withOpacity(0.2), // ボタンの背景色
                 ),
@@ -69,7 +82,7 @@ class HomePage extends ConsumerWidget {
                   height: 80,
                   child: Center(
                     child: Text(
-                      'Main -100',
+                      'Main -10',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
