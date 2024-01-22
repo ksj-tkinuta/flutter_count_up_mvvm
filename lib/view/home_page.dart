@@ -17,17 +17,40 @@ class HomePage extends ConsumerWidget {
         onPressed: _homePageNotifier.resetAllCount,
         child: const Icon(Icons.exposure_zero),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text('Main Count ${_homePageState.mainCount}'),
-            onTap: _homePageNotifier.increaseMainCount,
-          ),
-          ListTile(
-            title: Text('Sub Count ${_homePageState.subCount}'),
-            onTap: _homePageNotifier.increaseSubCount,
-          ),
-        ],
+      body: Center(
+        child: ListView(
+          shrinkWrap: true, // 追加
+          children: [
+            ListTile(
+              title: Text(
+                '${_homePageState.mainCount}  :  ${_homePageState.subCount}',
+                style: const TextStyle(
+                  fontSize: 80.0, // Set text size to 50dp
+                  fontFamily: 'Gothic', // Set font family to Gothic
+                  color: Colors.blue, // Set text color to blue
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Main Count +100'),
+              onTap: _homePageNotifier.increaseMainCount,
+              tileColor: Colors.blue,
+            ),
+            ListTile(
+              title: Text('Main Count -100'),
+              onTap: _homePageNotifier.decreaseMainCount,
+            ),
+            ListTile(
+              title: Text('Sub Count +1'),
+              onTap: _homePageNotifier.increaseSubCount,
+              tileColor: Colors.cyan,
+            ),
+            ListTile(
+              title: Text('Sub Count -1'),
+              onTap: _homePageNotifier.decreaseSubCount,
+            ),
+          ],
+        ),
       ),
     );
   }

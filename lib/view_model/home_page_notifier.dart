@@ -5,14 +5,24 @@ class HomePageNotifier extends StateNotifier<HomePageState> {
   // 初期値の指定
   HomePageNotifier() : super(const HomePageState());
 
-  // メインカウントを+1する
+  // メインカウントを+100する
   void increaseMainCount() async {
-    state = state.copyWith(mainCount: state.mainCount + 1);
+    state = state.copyWith(mainCount: state.mainCount + 100);
+  }
+
+  // メインカウントを-100する
+  void decreaseMainCount() async {
+    state = state.copyWith(mainCount: state.mainCount - 100);
   }
 
   // サブカウントを+1する
   void increaseSubCount() async {
     state = state.copyWith(subCount: state.subCount + 1);
+  }
+
+  // サブカウントを+1する
+  void decreaseSubCount() async {
+    state = state.copyWith(subCount: state.subCount - 1);
   }
 
   // すべてのカウントを0に戻す
