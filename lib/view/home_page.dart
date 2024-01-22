@@ -7,51 +7,74 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // state（状態）
     final _homePageState = ref.watch(homePageProvider);
-    // provider（状態の操作）
     final _homePageNotifier = ref.watch(homePageProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter COUNT UP MVVM')),
       floatingActionButton: FloatingActionButton(
         onPressed: _homePageNotifier.resetAllCount,
         child: const Icon(Icons.exposure_zero),
       ),
-      body: Center(
-        child: ListView(
-          shrinkWrap: true, // 追加
-          children: [
-            ListTile(
-              title: Text(
-                '${_homePageState.mainCount}  :  ${_homePageState.subCount}',
-                style: const TextStyle(
-                  fontSize: 80.0, // Set text size to 50dp
-                  fontFamily: 'Gothic', // Set font family to Gothic
-                  color: Colors.blue, // Set text color to blue
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              'https://cdn.pixabay.com/photo/2017/10/01/18/47/trimaran-2806616_1280.jpg', // 画像のURLを指定
+            ),
+            fit: BoxFit.contain,
+          ),
+        ),
+        child: Center(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Center(
+                child: Transform.translate(
+                  offset: Offset(0, -200.0),
+                  child: Text(
+                    '${_homePageState.mainCount}  :  ${_homePageState.subCount}',
+                    style: const TextStyle(
+                      fontSize: 80.0,
+                      fontFamily: 'Gothic',
+                      color: Colors.blue,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              title: Text('Main Count +100'),
-              onTap: _homePageNotifier.increaseMainCount,
-              tileColor: Colors.blue,
-            ),
-            ListTile(
-              title: Text('Main Count -100'),
-              onTap: _homePageNotifier.decreaseMainCount,
-            ),
-            ListTile(
-              title: Text('Sub Count +1'),
-              onTap: _homePageNotifier.increaseSubCount,
-              tileColor: Colors.cyan,
-            ),
-            ListTile(
-              title: Text('Sub Count -1'),
-              onTap: _homePageNotifier.decreaseSubCount,
-            ),
-          ],
+              Card(
+                color: Colors.blue,
+                child: ListTile(
+                  title: Text('Main Count +100', style: TextStyle(color: Colors.white)),
+                  onTap: _homePageNotifier.increaseMainCount,
+                ),
+              ),
+              Card(
+                color: Colors.blue.withOpacity(0.2),
+                child: ListTile(
+                  title: Text('Main Count -100', style: TextStyle(color: Colors.white)),
+                  onTap: _homePageNotifier.decreaseMainCount,
+                ),
+              ),
+              Card(
+                color: Colors.cyan,
+                child: ListTile(
+                  title: Text('Sub Count +1', style: TextStyle(color: Colors.white)),
+                  onTap: _homePageNotifier.increaseSubCount,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  title: Text('Sub Count -1'),
+                  onTap: _homePageNotifier.decreaseSubCount,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
