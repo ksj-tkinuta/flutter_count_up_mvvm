@@ -12,7 +12,7 @@ class HomePage extends ConsumerWidget {
     // provider（状態の操作）
     final _homePageNotifier = ref.watch(homePageProvider.notifier);
     return Scaffold(
-      appBar: AppBar(title: const Text('COUNTUP MVVM')),
+      appBar: AppBar(title: const Text('COUNT UP MVVM')),
       floatingActionButton: FloatingActionButton(
         onPressed: _homePageNotifier.resetAllCount,
         child: const Icon(Icons.exposure_zero),
