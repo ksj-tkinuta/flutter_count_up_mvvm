@@ -31,7 +31,7 @@ class HomePage extends ConsumerWidget {
             children: [
               Center(
                 child: Transform.translate(
-                  offset: Offset(0, -200.0),
+                  offset: const Offset(0, -200.0),
                   child: Text(
                     '${_homePageState.mainCount}  :  ${_homePageState.subCount}',
                     style: const TextStyle(
@@ -43,31 +43,68 @@ class HomePage extends ConsumerWidget {
                   ),
                 ),
               ),
-              Card(
-                color: Colors.blue,
-                child: ListTile(
-                  title: Text('Main Count +100', style: TextStyle(color: Colors.white)),
-                  onTap: _homePageNotifier.increaseMainCount,
+              ElevatedButton(
+                onPressed: _homePageNotifier.increaseMainCount,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue.withOpacity(0.5), // ボタンの背景色
+                ),
+                child: const SizedBox(
+                  width: double.infinity,
+                  height: 80,
+                  child: Center(
+                    child: Text(
+                      'Main +100',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
-              Card(
-                color: Colors.blue.withOpacity(0.2),
-                child: ListTile(
-                  title: Text('Main Count -100', style: TextStyle(color: Colors.white)),
-                  onTap: _homePageNotifier.decreaseMainCount,
+              ElevatedButton(
+                onPressed: _homePageNotifier.decreaseMainCount,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue.withOpacity(0.2), // ボタンの背景色
+                ),
+                child: const SizedBox(
+                  width: double.infinity,
+                  height: 80,
+                  child: Center(
+                    child: Text(
+                      'Main -100',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
-              Card(
-                color: Colors.cyan,
-                child: ListTile(
-                  title: Text('Sub Count +1', style: TextStyle(color: Colors.white)),
-                  onTap: _homePageNotifier.increaseSubCount,
+              ElevatedButton(
+                onPressed: _homePageNotifier.increaseSubCount,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.cyan.withOpacity(0.5), // ボタンの背景色
+                ),
+                child: const SizedBox(
+                  width: double.infinity,
+                  height: 80,
+                  child: Center(
+                    child: Text(
+                      'Sub +1',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
-              Card(
-                child: ListTile(
-                  title: Text('Sub Count -1'),
-                  onTap: _homePageNotifier.decreaseSubCount,
+              ElevatedButton(
+                onPressed: _homePageNotifier.decreaseSubCount,
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white.withOpacity(0.2), // ボタンの背景色
+                ),
+                child: const SizedBox(
+                  width: double.infinity,
+                  height: 80,
+                  child: Center(
+                    child: Text(
+                      'Sub -1',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -77,4 +114,3 @@ class HomePage extends ConsumerWidget {
     );
   }
 }
-
